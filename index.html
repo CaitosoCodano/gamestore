@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameStore - Sua Loja de Jogos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <h1>Game<span>Store</span></h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#inicio"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="#jogos"><i class="fas fa-gamepad"></i> Jogos</a></li>
+                    <li><a href="#destaques"><i class="fas fa-fire"></i> Destaques</a></li>
+                    <li><a href="#ofertas"><i class="fas fa-tag"></i> Ofertas</a></li>
+                    <li><a href="#sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                </ul>
+            </nav>
+            
+            <div class="icons-header">
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="#" class="user-icon">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero" id="inicio">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h2>Os melhores jogos estão aqui!</h2>
+                <p>Encontre os lançamentos mais aguardados, clássicos atemporais e ofertas exclusivas. Tudo em um só lugar para você.</p>
+                <div class="hero-buttons">
+                    <a href="#jogos" class="btn btn-primary">Ver Catálogo</a>
+                    <a href="#ofertas" class="btn btn-secondary">Ofertas da Semana</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="placeholder-image">
+                    <i class="fas fa-gamepad"></i>
+                    <p>Imagem de jogos e consoles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Jogos em Destaque -->
+    <section class="featured-games" id="jogos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Jogos em Destaque</h2>
+                <p>Os títulos mais populares do momento</p>
+            </div>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <div class="placeholder-game">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <span class="game-tag new">Novo</span>
+                    </div>
+                    <div class="game-info">
+                        <h3>Cyberpunk 2077</h3>
+                        <p>RPG de mundo aberto no futuro distópico de Night City.</p>
+                        <div class="game-platforms">
+                            <span class="platform ps">PS5</span>
+                            <span class="platform xbox">Xbox</span>
+                            <span class="platform pc">PC</span>
+                        </div>
+                        <div class="game-price">
+                            <span class="price">R$ 149,90</span>
+                            <button class="btn-cart">Adicionar <i class="fas fa-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image">
+                        <div class="placeholder-game">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <span class="game-tag bestseller">Mais Vendido</span>
+                    </div>
+                    <div class="game-info">
+                        <h3>The Legend of Zelda</h3>
+                        <p>A nova aventura épica de Link em Hyrule.</p>
+                        <div class="game-platforms">
+                            <span class="platform switch">Switch</span>
+                        </div>
+                        <div class="game-price">
+                            <span class="price">R$ 299,90</span>
+                            <button class="btn-cart">Adicionar <i class="fas fa-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image">
+                        <div class="placeholder-game">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <span class="game-tag sale">-30%</span>
+                    </div>
+                    <div class="game-info">
+                        <h3>EA Sports FC 24</h3>
+                        <p>O mais completo jogo de futebol com times e ligas reais.</p>
+                        <div class="game-platforms">
+                            <span class="platform ps">PS5</span>
+                            <span class="platform xbox">Xbox</span>
+                            <span class="platform pc">PC</span>
+                        </div>
+                        <div class="game-price">
+                            <span class="price old">R$ 299,90</span>
+                            <span class="price">R$ 209,90</span>
+                            <button class="btn-cart">Adicionar <i class="fas fa-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image">
+                        <div class="placeholder-game">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>God of War: Ragnarok</h3>
+                        <p>A jornada épica de Kratos e Atreus pelos Nove Reinos.</p>
+                        <div class="game-platforms">
+                            <span class="platform ps">PS5</span>
+                        </div>
+                        <div class="game-price">
+                            <span class="price">R$ 249,90</span>
+                            <button class="btn-cart">Adicionar <i class="fas fa-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-more">
+                <a href="#" class="btn btn-secondary">Ver Mais Jogos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Ofertas Especiais -->
+    <section class="special-offers" id="ofertas">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ofertas Especiais</h2>
+                <p>Economize em grandes títulos</p>
+            </div>
+            
+            <div class="offers-slider">
+                <div class="offer-card">
+                    <div class="offer-badge">-50%</div>
+                    <div class="offer-content">
+                        <h3>Promoção de Aniversário</h3>
+                        <p>Descontos especiais em mais de 100 jogos selecionados</p>
+                        <div class="offer-timer">
+                            <p>Termina em:</p>
+                            <div class="timer">
+                                <span id="days">02</span>d :
+                                <span id="hours">12</span>h :
+                                <span id="minutes">45</span>m
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Aproveitar Ofertas</a>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-badge">Bundle</div>
+                    <div class="offer-content">
+                        <h3>Pacote Gamer</h3>
+                        <p>Leve 3 jogos por apenas R$ 299,90. Escolha entre mais de 50 opções.</p>
+                        <a href="#" class="btn btn-primary">Montar Pacote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section class="about-section" id="sobre">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Sobre a GameStore</h2>
+                    <p>Somos a maior loja de jogos do Brasil, com mais de 10 anos no mercado. Oferecemos os melhores preços, lançamentos simultâneos com o exterior e uma experiência de compra única.</p>
+                    <p>Nosso catálogo possui mais de 5.000 títulos para todas as plataformas: PlayStation, Xbox, Nintendo Switch e PC.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-shipping-fast"></i>
+                            <h4>Entrega Rápida</h4>
+                            <p>Receba em até 24h nas capitais</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Compra Segura</h4>
+                            <p>Seus dados protegidos</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-headset"></i>
+                            <h4>Suporte 24/7</h4>
+                            <p>Atendimento sempre disponível</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="placeholder-about">
+                        <i class="fas fa-store"></i>
+                        <p>Nossa Loja Virtual</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>Game<span>Store</span></h3>
+                    </div>
+                    <p>Sua loja de jogos favorita com os melhores preços e lançamentos.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#jogos">Jogos</a></li>
+                        <li><a href="#ofertas">Ofertas</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Plataformas</h4>
+                    <ul>
+                        <li><a href="#">PlayStation</a></li>
+                        <li><a href="#">Xbox</a></li>
+                        <li><a href="#">Nintendo Switch</a></li>
+                        <li><a href="#">PC Gaming</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contato</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Av. dos Games, 1234 - São Paulo, SP</li>
+                        <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
+                        <li><i class="fas fa-envelope"></i> contato@gamestore.com.br</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 GameStore. Todos os direitos reservados.</p>
+                <p>Desenvolvido com <i class="fas fa-heart"></i> para gamers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
