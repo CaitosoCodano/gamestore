@@ -6,6 +6,8 @@
     <title>GameStore - Sua Loja de Jogos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Estilos do modal (caixa de diálogo) */
@@ -49,6 +51,10 @@
             display: none;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
+        
+        /* Estilos inline temporários */
+        body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: #0f0f1a; color: white; }
+        .loading { text-align: center; padding: 100px; font-size: 24px; color: #6a11cb; }
     </style>
 </head>
 <body>
@@ -62,7 +68,7 @@
             <h2><i class="fas fa-shopping-cart"></i> Meu Carrinho</h2>
             <div id="cartItems"></div>
             <div id="cartTotal" style="margin: 20px 0; font-size: 1.2rem;"></div>
-            <button class="btn btn-primary" onclick="checkout()" style="width: 100%;">
+            <button class="btn btn-primary" onclick="checkout()" style="width: 100%; padding: 15px; background: linear-gradient(to right, #6a11cb, #2575fc); color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 16px;">
                 <i class="fas fa-credit-card"></i> Finalizar Compra (R$ <span id="totalValue">0</span>)
             </button>
         </div>
@@ -76,12 +82,12 @@
             <div style="margin: 20px 0;">
                 <input type="email" id="loginEmail" placeholder="Seu email" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #6a11cb; background: #252547; color: white;">
                 <input type="password" id="loginPassword" placeholder="Sua senha" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #6a11cb; background: #252547; color: white;">
-                <button class="btn btn-primary" onclick="doLogin()" style="width: 100%; margin-top: 20px;">
+                <button class="btn btn-primary" onclick="doLogin()" style="width: 100%; margin-top: 20px; padding: 12px; background: linear-gradient(to right, #6a11cb, #2575fc); color: white; border: none; border-radius: 10px; cursor: pointer;">
                     <i class="fas fa-sign-in-alt"></i> Entrar
                 </button>
             </div>
             <p style="text-align: center; color: #b0b0c0;">Ou crie uma conta:</p>
-            <button class="btn btn-secondary" onclick="showRegister()" style="width: 100%;">
+            <button class="btn btn-secondary" onclick="showRegister()" style="width: 100%; padding: 12px; background: transparent; color: #6a11cb; border: 2px solid #6a11cb; border-radius: 10px; cursor: pointer;">
                 <i class="fas fa-user-plus"></i> Criar Conta
             </button>
         </div>
@@ -96,7 +102,7 @@
                 <input type="text" id="regName" placeholder="Seu nome completo" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #6a11cb; background: #252547; color: white;">
                 <input type="email" id="regEmail" placeholder="Seu email" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #6a11cb; background: #252547; color: white;">
                 <input type="password" id="regPassword" placeholder="Sua senha" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #6a11cb; background: #252547; color: white;">
-                <button class="btn btn-primary" onclick="doRegister()" style="width: 100%; margin-top: 20px;">
+                <button class="btn btn-primary" onclick="doRegister()" style="width: 100%; margin-top: 20px; padding: 12px; background: linear-gradient(to right, #6a11cb, #2575fc); color: white; border: none; border-radius: 10px; cursor: pointer;">
                     <i class="fas fa-check"></i> Criar Conta
                 </button>
             </div>
@@ -104,100 +110,104 @@
     </div>
 
     <!-- Cabeçalho -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-gamepad"></i>
-                <h1>Game<span>Store</span></h1>
-            </div>
-            
-            <!-- Barra de Busca -->
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Buscar jogos...">
-                <button onclick="searchGames()"><i class="fas fa-search"></i></button>
-            </div>
-            
-            <nav>
-                <ul>
-                    <li><a href="#inicio"><i class="fas fa-home"></i> Início</a></li>
-                    <li><a href="#jogos"><i class="fas fa-gamepad"></i> Jogos</a></li>
-                    <li><a href="#ofertas"><i class="fas fa-tag"></i> Ofertas</a></li>
-                    <li><a href="#categorias"><i class="fas fa-list"></i> Categorias</a></li>
-                </ul>
-            </nav>
-            
-            <div class="icons-header">
-                <a href="#" class="cart-icon" onclick="openCart()">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="cartCount">0</span>
-                </a>
-                <a href="#" class="user-icon" onclick="openLogin()">
-                    <i class="fas fa-user"></i>
-                </a>
-                <a href="#" class="wishlist-icon" onclick="showWishlist()">
-                    <i class="fas fa-heart"></i>
-                    <span class="wishlist-count" id="wishlistCount">0</span>
-                </a>
+    <header style="background: #1a1a2e; padding: 20px 0; border-bottom: 3px solid #6a11cb; position: sticky; top: 0; z-index: 100;">
+        <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-gamepad" style="color: #6a11cb; font-size: 2rem;"></i>
+                    <h1 style="font-size: 1.8rem; background: linear-gradient(to right, #6a11cb, #2575fc); -webkit-background-clip: text; background-clip: text; color: transparent;">Game<span style="color: #2575fc;">Store</span></h1>
+                </div>
+                
+                <!-- Barra de Busca -->
+                <div class="search-bar" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="text" id="searchInput" placeholder="Buscar jogos..." style="padding: 10px 15px; border-radius: 20px; border: 1px solid #6a11cb; background: #252547; color: white; width: 200px;">
+                    <button onclick="searchGames()" style="background: #6a11cb; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <nav>
+                    <ul style="display: flex; list-style: none; gap: 30px;">
+                        <li><a href="#inicio" style="color: white; text-decoration: none;"><i class="fas fa-home"></i> Início</a></li>
+                        <li><a href="#jogos" style="color: white; text-decoration: none;"><i class="fas fa-gamepad"></i> Jogos</a></li>
+                        <li><a href="#ofertas" style="color: white; text-decoration: none;"><i class="fas fa-tag"></i> Ofertas</a></li>
+                        <li><a href="#categorias" style="color: white; text-decoration: none;"><i class="fas fa-list"></i> Categorias</a></li>
+                    </ul>
+                </nav>
+                
+                <div style="display: flex; gap: 20px;">
+                    <a href="#" class="cart-icon" onclick="openCart()" style="color: white; font-size: 1.3rem; position: relative;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount" style="position: absolute; top: -8px; right: -8px; background: #ff4757; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">0</span>
+                    </a>
+                    <a href="#" class="user-icon" onclick="openLogin()" style="color: white; font-size: 1.3rem;">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" class="wishlist-icon" onclick="showWishlist()" style="color: white; font-size: 1.3rem; position: relative;">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count" id="wishlistCount" style="position: absolute; top: -8px; right: -8px; background: #ff4757; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">0</span>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Seção Hero -->
-    <section class="hero" id="inicio">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <h2>Os melhores jogos estão aqui!</h2>
-                <p>Encontre os lançamentos mais aguardados, clássicos atemporais e ofertas exclusivas. Tudo em um só lugar para você.</p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToGames()">
-                        <i class="fas fa-gamepad"></i> Ver Catálogo
-                    </button>
-                    <button class="btn btn-secondary" onclick="showDailyOffer()">
-                        <i class="fas fa-gift"></i> Oferta do Dia
-                    </button>
+    <section class="hero" id="inicio" style="padding: 100px 0; background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);">
+        <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div style="display: flex; align-items: center; gap: 40px;">
+                <div style="flex: 1;">
+                    <h2 style="font-size: 3rem; margin-bottom: 20px; background: linear-gradient(to right, #6a11cb, #2575fc); -webkit-background-clip: text; background-clip: text; color: transparent;">Os melhores jogos estão aqui!</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 30px; color: #b0b0c0; max-width: 600px;">Encontre os lançamentos mais aguardados, clássicos atemporais e ofertas exclusivas. Tudo em um só lugar para você.</p>
+                    <div style="display: flex; gap: 20px;">
+                        <button class="btn btn-primary" onclick="scrollToGames()" style="padding: 12px 30px; background: linear-gradient(to right, #6a11cb, #2575fc); color: white; border: none; border-radius: 30px; cursor: pointer; font-weight: bold;">
+                            <i class="fas fa-gamepad"></i> Ver Catálogo
+                        </button>
+                        <button class="btn btn-secondary" onclick="showDailyOffer()" style="padding: 12px 30px; background: transparent; color: #6a11cb; border: 2px solid #6a11cb; border-radius: 30px; cursor: pointer; font-weight: bold;">
+                            <i class="fas fa-gift"></i> Oferta do Dia
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <div class="placeholder-image">
-                    <i class="fas fa-gamepad"></i>
-                    <p>GameStore - Sua Loja de Jogos</p>
+                <div style="flex: 1; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">
+                    <div style="text-align: center; color: white;">
+                        <i class="fas fa-gamepad" style="font-size: 8rem; margin-bottom: 20px; opacity: 0.8;"></i>
+                        <p style="font-size: 1.2rem; font-weight: bold;">GameStore - Sua Loja de Jogos</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Seção Jogos em Destaque -->
-    <section class="featured-games" id="jogos">
-        <div class="container">
-            <div class="section-header">
-                <h2>Jogos em Destaque</h2>
-                <p>Os títulos mais populares do momento</p>
+    <section class="featured-games" id="jogos" style="padding: 80px 0; background: #1a1a2e;">
+        <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px; color: white;">Jogos em Destaque</h2>
+                <p style="color: #b0b0c0; font-size: 1.1rem;">Os títulos mais populares do momento</p>
             </div>
             
-            <div class="games-grid">
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; margin-bottom: 50px;">
                 <!-- Jogo 1 -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <div class="placeholder-game">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <span class="game-tag new">Novo</span>
+                <div class="game-card" style="background: #252547; border-radius: 15px; overflow: hidden; transition: transform 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                    <div class="game-image" style="height: 200px; position: relative; background: linear-gradient(135deg, #2d2d5c 0%, #3a3a7a 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-robot" style="font-size: 4rem; opacity: 0.7;"></i>
+                        <span style="position: absolute; top: 15px; right: 15px; padding: 5px 10px; border-radius: 20px; background: #6a11cb; color: white; font-size: 0.8rem; font-weight: bold;">Novo</span>
                     </div>
-                    <div class="game-info">
-                        <h3>Cyberpunk 2077</h3>
-                        <p>RPG de mundo aberto no futuro distópico de Night City.</p>
-                        <div class="game-platforms">
-                            <span class="platform ps">PS5</span>
-                            <span class="platform xbox">Xbox</span>
-                            <span class="platform pc">PC</span>
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: white;">Cyberpunk 2077</h3>
+                        <p style="color: #b0b0c0; font-size: 0.9rem; margin-bottom: 15px; min-height: 60px;">RPG de mundo aberto no futuro distópico de Night City.</p>
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                            <span style="padding: 3px 10px; border-radius: 15px; background: #003087; color: white; font-size: 0.8rem; font-weight: bold;">PS5</span>
+                            <span style="padding: 3px 10px; border-radius: 15px; background: #107c10; color: white; font-size: 0.8rem; font-weight: bold;">Xbox</span>
+                            <span style="padding: 3px 10px; border-radius: 15px; background: #e72929; color: white; font-size: 0.8rem; font-weight: bold;">PC</span>
                         </div>
-                        <div class="game-price">
-                            <span class="price">R$ 149,90</span>
-                            <div class="game-actions">
-                                <button class="btn-cart" onclick="addToCart('Cyberpunk 2077', 149.90)">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 1.3rem; font-weight: bold; color: #6a11cb;">R$ 149,90</span>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <button onclick="addToCart('Cyberpunk 2077', 149.90)" style="background: linear-gradient(to right, #6a11cb, #2575fc); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
                                     <i class="fas fa-cart-plus"></i> Comprar
                                 </button>
-                                <button class="btn-wishlist" onclick="addToWishlist('Cyberpunk 2077')">
+                                <button onclick="addToWishlist('Cyberpunk 2077')" style="background: transparent; color: #b0b0c0; border: 2px solid #b0b0c0; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
                                     <i class="far fa-heart"></i>
                                 </button>
                             </div>
@@ -206,26 +216,24 @@
                 </div>
                 
                 <!-- Jogo 2 -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <div class="placeholder-game">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <span class="game-tag bestseller">Mais Vendido</span>
+                <div class="game-card" style="background: #252547; border-radius: 15px; overflow: hidden; transition: transform 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                    <div class="game-image" style="height: 200px; position: relative; background: linear-gradient(135deg, #2d2d5c 0%, #3a3a7a 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-crown" style="font-size: 4rem; opacity: 0.7;"></i>
+                        <span style="position: absolute; top: 15px; right: 15px; padding: 5px 10px; border-radius: 20px; background: #ff9800; color: white; font-size: 0.8rem; font-weight: bold;">Mais Vendido</span>
                     </div>
-                    <div class="game-info">
-                        <h3>The Legend of Zelda: Tears of the Kingdom</h3>
-                        <p>A nova aventura épica de Link em Hyrule.</p>
-                        <div class="game-platforms">
-                            <span class="platform switch">Switch</span>
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: white;">The Legend of Zelda: Tears of the Kingdom</h3>
+                        <p style="color: #b0b0c0; font-size: 0.9rem; margin-bottom: 15px; min-height: 60px;">A nova aventura épica de Link em Hyrule.</p>
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                            <span style="padding: 3px 10px; border-radius: 15px; background: #e60012; color: white; font-size: 0.8rem; font-weight: bold;">Switch</span>
                         </div>
-                        <div class="game-price">
-                            <span class="price">R$ 299,90</span>
-                            <div class="game-actions">
-                                <button class="btn-cart" onclick="addToCart('The Legend of Zelda: Tears of the Kingdom', 299.90)">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 1.3rem; font-weight: bold; color: #6a11cb;">R$ 299,90</span>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <button onclick="addToCart('The Legend of Zelda: Tears of the Kingdom', 299.90)" style="background: linear-gradient(to right, #6a11cb, #2575fc); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
                                     <i class="fas fa-cart-plus"></i> Comprar
                                 </button>
-                                <button class="btn-wishlist" onclick="addToWishlist('The Legend of Zelda: Tears of the Kingdom')">
+                                <button onclick="addToWishlist('The Legend of Zelda: Tears of the Kingdom')" style="background: transparent; color: #b0b0c0; border: 2px solid #b0b0c0; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
                                     <i class="far fa-heart"></i>
                                 </button>
                             </div>
@@ -234,29 +242,29 @@
                 </div>
                 
                 <!-- Jogo 3 -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <div class="placeholder-game">
-                            <i class="fas fa-futbol"></i>
-                        </div>
-                        <span class="game-tag sale">-30%</span>
+                <div class="game-card" style="background: #252547; border-radius: 15px; overflow: hidden; transition: transform 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                    <div class="game-image" style="height: 200px; position: relative; background: linear-gradient(135deg, #2d2d5c 0%, #3a3a7a 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-futbol" style="font-size: 4rem; opacity: 0.7;"></i>
+                        <span style="position: absolute; top: 15px; right: 15px; padding: 5px 10px; border-radius: 20px; background: #ff4757; color: white; font-size: 0.8rem; font-weight: bold;">-30%</span>
                     </div>
-                    <div class="game-info">
-                        <h3>EA Sports FC 24</h3>
-                        <p>O mais completo jogo de futebol com times e ligas reais.</p>
-                        <div class="game-platforms">
-                            <span class="platform ps">PS5</span>
-                            <span class="platform xbox">Xbox</span>
-                            <span class="platform pc">PC</span>
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: white;">EA Sports FC 24</h3>
+                        <p style="color: #b0b0c0; font-size: 0.9rem; margin-bottom: 15px; min-height: 60px;">O mais completo jogo de futebol com times e ligas reais.</p>
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                            <span style="padding: 3px 10px; border-radius: 15px; background: #003087; color: white; font-size: 0.8rem; font-weight: bold;">PS5</span>
+                            <span style="padding: 3px 10px; border-radius: 15px; background: #107c10; color: white; font-size: 0.8rem; font-weight: bold;">Xbox</span>
+                            <span style="padding: 3px 10px; border-radius: 15px; background: #e72929; color: white; font-size: 0.8rem; font-weight: bold;">PC</span>
                         </div>
-                        <div class="game-price">
-                            <span class="price old">R$ 299,90</span>
-                            <span class="price">R$ 209,90</span>
-                            <div class="game-actions">
-                                <button class="btn-cart" onclick="addToCart('EA Sports FC 24', 209.90)">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span style="font-size: 1rem; text-decoration: line-through; color: #b0b0c0; margin-right: 5px;">R$ 299,90</span>
+                                <span style="font-size: 1.3rem; font-weight: bold; color: #6a11cb;">R$ 209,90</span>
+                            </div>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <button onclick="addToCart('EA Sports FC 24', 209.90)" style="background: linear-gradient(to right, #6a11cb, #2575fc); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
                                     <i class="fas fa-cart-plus"></i> Comprar
                                 </button>
-                                <button class="btn-wishlist" onclick="addToWishlist('EA Sports FC 24')">
+                                <button onclick="addToWishlist('EA Sports FC 24')" style="background: transparent; color: #b0b0c0; border: 2px solid #b0b0c0; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
                                     <i class="far fa-heart"></i>
                                 </button>
                             </div>
@@ -265,25 +273,23 @@
                 </div>
                 
                 <!-- Jogo 4 -->
-                <div class="game-card">
-                    <div class="game-image">
-                        <div class="placeholder-game">
-                            <i class="fas fa-hammer"></i>
-                        </div>
+                <div class="game-card" style="background: #252547; border-radius: 15px; overflow: hidden; transition: transform 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                    <div class="game-image" style="height: 200px; position: relative; background: linear-gradient(135deg, #2d2d5c 0%, #3a3a7a 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-hammer" style="font-size: 4rem; opacity: 0.7;"></i>
                     </div>
-                    <div class="game-info">
-                        <h3>God of War: Ragnarok</h3>
-                        <p>A jornada épica de Kratos e Atreus pelos Nove Reinos.</p>
-                        <div class="game-platforms">
-                            <span class="platform ps">PS5</span>
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: white;">God of War: Ragnarok</h3>
+                        <p style="color: #b0b0c0; font-size: 0.9rem; margin-bottom: 15px; min-height: 60px;">A jornada épica de Kratos e Atreus pelos Nove Reinos.</p>
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                            <span style="padding: 3px 10px; border-radius: 15px; background: #003087; color: white; font-size: 0.8rem; font-weight: bold;">PS5</span>
                         </div>
-                        <div class="game-price">
-                            <span class="price">R$ 249,90</span>
-                            <div class="game-actions">
-                                <button class="btn-cart" onclick="addToCart('God of War: Ragnarok', 249.90)">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 1.3rem; font-weight: bold; color: #6a11cb;">R$ 249,90</span>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <button onclick="addToCart('God of War: Ragnarok', 249.90)" style="background: linear-gradient(to right, #6a11cb, #2575fc); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
                                     <i class="fas fa-cart-plus"></i> Comprar
                                 </button>
-                                <button class="btn-wishlist" onclick="addToWishlist('God of War: Ragnarok')">
+                                <button onclick="addToWishlist('God of War: Ragnarok')" style="background: transparent; color: #b0b0c0; border: 2px solid #b0b0c0; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
                                     <i class="far fa-heart"></i>
                                 </button>
                             </div>
@@ -292,8 +298,8 @@
                 </div>
             </div>
             
-            <div class="view-more">
-                <button class="btn btn-secondary" onclick="loadMoreGames()">
+            <div style="text-align: center;">
+                <button class="btn btn-secondary" onclick="loadMoreGames()" style="padding: 12px 30px; background: transparent; color: #6a11cb; border: 2px solid #6a11cb; border-radius: 30px; cursor: pointer; font-weight: bold;">
                     <i class="fas fa-plus"></i> Carregar Mais Jogos
                 </button>
             </div>
@@ -301,39 +307,39 @@
     </section>
 
     <!-- Seção Ofertas Especiais -->
-    <section class="special-offers" id="ofertas">
-        <div class="container">
-            <div class="section-header">
-                <h2>Ofertas Especiais</h2>
-                <p>Economize em grandes títulos</p>
+    <section class="special-offers" id="ofertas" style="padding: 80px 0; background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);">
+        <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px; color: white;">Ofertas Especiais</h2>
+                <p style="color: #b0b0c0; font-size: 1.1rem;">Economize em grandes títulos</p>
             </div>
             
-            <div class="offers-slider">
-                <div class="offer-card">
-                    <div class="offer-badge">-50%</div>
-                    <div class="offer-content">
-                        <h3>Promoção de Aniversário</h3>
-                        <p>Descontos especiais em mais de 100 jogos selecionados</p>
-                        <div class="offer-timer">
-                            <p>Termina em:</p>
-                            <div class="timer">
-                                <span id="days">02</span>d :
-                                <span id="hours">12</span>h :
-                                <span id="minutes">45</span>m
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 30px;">
+                <div class="offer-card" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); border-radius: 15px; padding: 30px; position: relative; min-height: 250px;">
+                    <div style="position: absolute; top: 20px; right: 20px; background: #ff4757; color: white; padding: 10px 15px; border-radius: 30px; font-weight: bold; font-size: 1.2rem;">-50%</div>
+                    <div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: white;">Promoção de Aniversário</h3>
+                        <p style="margin-bottom: 20px; color: rgba(255,255,255,0.9);">Descontos especiais em mais de 100 jogos selecionados</p>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                            <p style="margin-bottom: 10px; font-weight: bold;">Termina em:</p>
+                            <div style="font-size: 1.5rem; font-weight: bold;">
+                                <span id="days" style="background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px;">02</span>d :
+                                <span id="hours" style="background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px;">12</span>h :
+                                <span id="minutes" style="background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px;">45</span>m
                             </div>
                         </div>
-                        <button class="btn btn-primary" onclick="showBirthdayOffers()">
+                        <button class="btn btn-primary" onclick="showBirthdayOffers()" style="padding: 12px 30px; background: white; color: #6a11cb; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
                             <i class="fas fa-birthday-cake"></i> Aproveitar Ofertas
                         </button>
                     </div>
                 </div>
                 
-                <div class="offer-card">
-                    <div class="offer-badge">Bundle</div>
-                    <div class="offer-content">
-                        <h3>Pacote Gamer</h3>
-                        <p>Leve 3 jogos por apenas R$ 299,90. Escolha entre mais de 50 opções.</p>
-                        <button class="btn btn-primary" onclick="createBundle()">
+                <div class="offer-card" style="background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%); border-radius: 15px; padding: 30px; position: relative; min-height: 250px;">
+                    <div style="position: absolute; top: 20px; right: 20px; background: #ff4757; color: white; padding: 10px 15px; border-radius: 30px; font-weight: bold; font-size: 1.2rem;">Bundle</div>
+                    <div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: white;">Pacote Gamer</h3>
+                        <p style="margin-bottom: 20px; color: rgba(255,255,255,0.9);">Leve 3 jogos por apenas R$ 299,90. Escolha entre mais de 50 opções.</p>
+                        <button class="btn btn-primary" onclick="createBundle()" style="padding: 12px 30px; background: white; color: #6a11cb; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
                             <i class="fas fa-box"></i> Montar Pacote
                         </button>
                     </div>
@@ -343,92 +349,583 @@
     </section>
 
     <!-- Seção Categorias -->
-    <section class="categories" id="categorias">
-        <div class="container">
-            <div class="section-header">
-                <h2>Categorias</h2>
-                <p>Encontre jogos por gênero</p>
+    <section class="categories" id="categorias" style="padding: 80px 0; background: #1a1a2e;">
+        <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px; color: white;">Categorias</h2>
+                <p style="color: #b0b0c0; font-size: 1.1rem;">Encontre jogos por gênero</p>
             </div>
-            <div class="categories-grid">
-                <button class="category-btn" onclick="filterByCategory('Ação')">
-                    <i class="fas fa-fist-raised"></i> Ação
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
+                <button class="category-btn" onclick="filterByCategory('Ação')" style="background: #252547; border: none; padding: 20px; border-radius: 10px; color: white; font-size: 1.1rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <i class="fas fa-fist-raised" style="font-size: 2rem;"></i> Ação
                 </button>
-                <button class="category-btn" onclick="filterByCategory('Aventura')">
-                    <i class="fas fa-mountain"></i> Aventura
+                <button class="category-btn" onclick="filterByCategory('Aventura')" style="background: #252547; border: none; padding: 20px; border-radius: 10px; color: white; font-size: 1.1rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <i class="fas fa-mountain" style="font-size: 2rem;"></i> Aventura
                 </button>
-                <button class="category-btn" onclick="filterByCategory('RPG')">
-                    <i class="fas fa-dragon"></i> RPG
+                <button class="category-btn" onclick="filterByCategory('RPG')" style="background: #252547; border: none; padding: 20px; border-radius: 10px; color: white; font-size: 1.1rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <i class="fas fa-dragon" style="font-size: 2rem;"></i> RPG
                 </button>
-                <button class="category-btn" onclick="filterByCategory('Esportes')">
-                    <i class="fas fa-futbol"></i> Esportes
+                <button class="category-btn" onclick="filterByCategory('Esportes')" style="background: #252547; border: none; padding: 20px; border-radius: 10px; color: white; font-size: 1.1rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <i class="fas fa-futbol" style="font-size: 2rem;"></i> Esportes
                 </button>
-                <button class="category-btn" onclick="filterByCategory('Estratégia')">
-                    <i class="fas fa-chess"></i> Estratégia
+                <button class="category-btn" onclick="filterByCategory('Estratégia')" style="background: #252547; border: none; padding: 20px; border-radius: 10px; color: white; font-size: 1.1rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <i class="fas fa-chess" style="font-size: 2rem;"></i> Estratégia
                 </button>
-                <button class="category-btn" onclick="filterByCategory('Terror')">
-                    <i class="fas fa-ghost"></i> Terror
+                <button class="category-btn" onclick="filterByCategory('Terror')" style="background: #252547; border: none; padding: 20px; border-radius: 10px; color: white; font-size: 1.1rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <i class="fas fa-ghost" style="font-size: 2rem;"></i> Terror
                 </button>
             </div>
         </div>
     </section>
 
     <!-- Rodapé -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="logo">
-                        <i class="fas fa-gamepad"></i>
-                        <h3>Game<span>Store</span></h3>
+    <footer style="background: #0f0f1a; padding: 60px 0 20px; border-top: 2px solid #6a11cb;">
+        <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <div class="logo" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <i class="fas fa-gamepad" style="color: #6a11cb; font-size: 2rem;"></i>
+                        <h3 style="font-size: 1.5rem; background: linear-gradient(to right, #6a11cb, #2575fc); -webkit-background-clip: text; background-clip: text; color: transparent;">Game<span style="color: #2575fc;">Store</span></h3>
                     </div>
-                    <p>Sua loja de jogos favorita com os melhores preços e lançamentos.</p>
-                    <div class="social-icons">
-                        <a href="#" onclick="shareOnFacebook()"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" onclick="shareOnTwitter()"><i class="fab fa-twitter"></i></a>
-                        <a href="#" onclick="shareOnInstagram()"><i class="fab fa-instagram"></i></a>
-                        <a href="#" onclick="joinDiscord()"><i class="fab fa-discord"></i></a>
+                    <p style="color: #b0b0c0; margin-bottom: 20px;">Sua loja de jogos favorita com os melhores preços e lançamentos.</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" onclick="shareOnFacebook()" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #252547; border-radius: 50%; color: white;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" onclick="shareOnTwitter()" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #252547; border-radius: 50%; color: white;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" onclick="shareOnInstagram()" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #252547; border-radius: 50%; color: white;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" onclick="joinDiscord()" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #252547; border-radius: 50%; color: white;">
+                            <i class="fab fa-discord"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="footer-column">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><button class="footer-link" onclick="scrollToTop()">Início</button></li>
-                        <li><button class="footer-link" onclick="scrollToGames()">Jogos</button></li>
-                        <li><button class="footer-link" onclick="showAllOffers()">Ofertas</button></li>
-                        <li><button class="footer-link" onclick="openSupport()">Suporte</button></li>
+                <div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 20px; color: white;">Links Rápidos</h4>
+                    <ul style="list-style: none;">
+                        <li><button onclick="scrollToTop()" style="background: none; border: none; color: #b0b0c0; cursor: pointer; text-align: left; padding: 0; margin-bottom: 10px;">Início</button></li>
+                        <li><button onclick="scrollToGames()" style="background: none; border: none; color: #b0b0c0; cursor: pointer; text-align: left; padding: 0; margin-bottom: 10px;">Jogos</button></li>
+                        <li><button onclick="showAllOffers()" style="background: none; border: none; color: #b0b0c0; cursor: pointer; text-align: left; padding: 0; margin-bottom: 10px;">Ofertas</button></li>
+                        <li><button onclick="openSupport()" style="background: none; border: none; color: #b0b0c0; cursor: pointer; text-align: left; padding: 0; margin-bottom: 10px;">Suporte</button></li>
                     </ul>
                 </div>
                 
-                <div class="footer-column">
-                    <h4>Contato</h4>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> Av. dos Games, 1234 - São Paulo, SP</li>
-                        <li><button class="footer-link" onclick="callPhone()"><i class="fas fa-phone"></i> (11) 99999-9999</button></li>
-                        <li><button class="footer-link" onclick="sendEmail()"><i class="fas fa-envelope"></i> contato@gamestore.com.br</button></li>
+                <div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 20px; color: white;">Contato</h4>
+                    <ul style="list-style: none;">
+                        <li style="color: #b0b0c0; margin-bottom: 15px;"><i class="fas fa-map-marker-alt" style="color: #6a11cb;"></i> Av. dos Games, 1234 - São Paulo, SP</li>
+                        <li><button onclick="callPhone()" style="background: none; border: none; color: #b0b0c0; cursor: pointer; text-align: left; padding: 0; margin-bottom: 10px;"><i class="fas fa-phone" style="color: #6a11cb;"></i> (11) 99999-9999</button></li>
+                        <li><button onclick="sendEmail()" style="background: none; border: none; color: #b0b0c0; cursor: pointer; text-align: left; padding: 0; margin-bottom: 10px;"><i class="fas fa-envelope" style="color: #6a11cb;"></i> contato@gamestore.com.br</button></li>
                     </ul>
                 </div>
                 
-                <div class="footer-column">
-                    <h4>Newsletter</h4>
-                    <p>Receba ofertas exclusivas</p>
-                    <div class="newsletter">
-                        <input type="email" id="newsletterEmail" placeholder="Seu email">
-                        <button class="btn btn-primary" onclick="subscribeNewsletter()">
+                <div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 20px; color: white;">Newsletter</h4>
+                    <p style="color: #b0b0c0; margin-bottom: 15px;">Receba ofertas exclusivas</p>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="email" id="newsletterEmail" placeholder="Seu email" style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #6a11cb; background: #252547; color: white;">
+                        <button onclick="subscribeNewsletter()" style="background: #6a11cb; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </div>
                 </div>
             </div>
             
-            <div class="footer-bottom">
+            <div style="text-align: center; padding-top: 20px; border-top: 1px solid #252547; color: #b0b0c0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
                 <p>&copy; 2024 GameStore. Todos os direitos reservados.</p>
-                <button class="footer-link" onclick="openTerms()">Termos de Uso</button>
-                <button class="footer-link" onclick="openPrivacy()">Política de Privacidade</button>
+                <div style="display: flex; gap: 20px;">
+                    <button onclick="openTerms()" style="background: none; border: none; color: #b0b0c0; cursor: pointer;">Termos de Uso</button>
+                    <button onclick="openPrivacy()" style="background: none; border: none; color: #b0b0c0; cursor: pointer;">Política de Privacidade</button>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // ============================================
+        // JAVASCRIPT COMPLETO DA GAMESTORE
+        // ============================================
+        
+        // Estado da aplicação
+        let cart = [];
+        let wishlist = [];
+        let isLoggedIn = false;
+        let currentUser = null;
+        
+        // ============================================
+        // SISTEMA DE CARRINHO
+        // ============================================
+        
+        function addToCart(gameName, price) {
+            const existingItem = cart.find(item => item.name === gameName);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+                showNotification(`Mais uma unidade de "${gameName}" adicionada ao carrinho!`);
+            } else {
+                cart.push({
+                    name: gameName,
+                    price: price,
+                    quantity: 1
+                });
+                showNotification(`"${gameName}" adicionado ao carrinho!`);
+            }
+            
+            updateCartCount();
+        }
+        
+        function removeFromCart(gameName) {
+            cart = cart.filter(item => item.name !== gameName);
+            updateCartCount();
+            updateCartModal();
+            showNotification(`"${gameName}" removido do carrinho!`);
+        }
+        
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById("cartCount").textContent = totalItems;
+        }
+        
+        function openCart() {
+            document.getElementById("cartModal").style.display = "block";
+            updateCartModal();
+        }
+        
+        function closeCart() {
+            document.getElementById("cartModal").style.display = "none";
+        }
+        
+        function updateCartModal() {
+            const cartItemsDiv = document.getElementById("cartItems");
+            const cartTotalDiv = document.getElementById("cartTotal");
+            const totalValueSpan = document.getElementById("totalValue");
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="text-align: center; color: #b0b0c0;">Seu carrinho está vazio</p>';
+                cartTotalDiv.innerHTML = "";
+                totalValueSpan.textContent = "0";
+                return;
+            }
+            
+            let total = 0;
+            let itemsHTML = "";
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                itemsHTML += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #333;">
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>R$ ${item.price.toFixed(2)} × ${item.quantity}</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: #6a11cb; font-weight: bold;">R$ ${itemTotal.toFixed(2)}</span>
+                            <button onclick="removeFromCart('${item.name}')" style="background: #ff4757; color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItemsDiv.innerHTML = itemsHTML;
+            cartTotalDiv.innerHTML = `<strong>Total: R$ ${total.toFixed(2)}</strong>`;
+            totalValueSpan.textContent = total.toFixed(2);
+        }
+        
+        // ============================================
+        // SISTEMA DE WISHLIST
+        // ============================================
+        
+        function addToWishlist(gameName) {
+            if (wishlist.includes(gameName)) {
+                wishlist = wishlist.filter(name => name !== gameName);
+                showNotification(`"${gameName}" removido da lista de desejos!`);
+            } else {
+                wishlist.push(gameName);
+                showNotification(`"${gameName}" adicionado à lista de desejos!`);
+            }
+            
+            updateWishlistCount();
+        }
+        
+        function showWishlist() {
+            if (wishlist.length === 0) {
+                showNotification("Sua lista de desejos está vazia!");
+            } else {
+                const gamesList = wishlist.join("\n• ");
+                alert(`📋 SUA LISTA DE DESEJOS:\n\n• ${gamesList}\n\nTotal: ${wishlist.length} jogo(s)`);
+            }
+        }
+        
+        function updateWishlistCount() {
+            document.getElementById("wishlistCount").textContent = wishlist.length;
+        }
+        
+        // ============================================
+        // SISTEMA DE LOGIN/CADASTRO
+        // ============================================
+        
+        function openLogin() {
+            document.getElementById("loginModal").style.display = "block";
+        }
+        
+        function closeLogin() {
+            document.getElementById("loginModal").style.display = "none";
+        }
+        
+        function showRegister() {
+            document.getElementById("loginModal").style.display = "none";
+            document.getElementById("registerModal").style.display = "block";
+        }
+        
+        function closeRegister() {
+            document.getElementById("registerModal").style.display = "none";
+        }
+        
+        function doLogin() {
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+            
+            if (!email || !password) {
+                showNotification("Por favor, preencha todos os campos!");
+                return;
+            }
+            
+            // Simulação de login
+            isLoggedIn = true;
+            currentUser = email;
+            
+            showNotification(`Bem-vindo de volta, ${email.split("@")[0]}!`);
+            closeLogin();
+            
+            // Atualiza ícone de usuário
+            document.querySelector(".user-icon i").className = "fas fa-user-check";
+        }
+        
+        function doRegister() {
+            const name = document.getElementById("regName").value;
+            const email = document.getElementById("regEmail").value;
+            const password = document.getElementById("regPassword").value;
+            
+            if (!name || !email || !password) {
+                showNotification("Por favor, preencha todos os campos!");
+                return;
+            }
+            
+            if (password.length < 6) {
+                showNotification("A senha deve ter pelo menos 6 caracteres!");
+                return;
+            }
+            
+            // Simulação de cadastro
+            isLoggedIn = true;
+            currentUser = email;
+            
+            showNotification(`Conta criada com sucesso! Bem-vindo(a), ${name}!`);
+            closeRegister();
+            
+            // Atualiza ícone de usuário
+            document.querySelector(".user-icon i").className = "fas fa-user-check";
+        }
+        
+        // ============================================
+        // SISTEMA DE COMPRA/CHECKOUT
+        // ============================================
+        
+        function checkout() {
+            if (cart.length === 0) {
+                showNotification("Seu carrinho está vazio!");
+                return;
+            }
+            
+            if (!isLoggedIn) {
+                showNotification("Por favor, faça login para finalizar a compra!");
+                openLogin();
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Simulação de pagamento
+            const paymentMethod = prompt(`💳 FINALIZAR COMPRA\n\nTotal: R$ ${total.toFixed(2)}\n\nEscolha a forma de pagamento:\n1. Cartão de Crédito\n2. PIX\n3. Boleto\n\nDigite o número:`);
+            
+            if (!paymentMethod) return;
+            
+            let methodName = "";
+            switch(paymentMethod) {
+                case "1": methodName = "Cartão de Crédito"; break;
+                case "2": methodName = "PIX"; break;
+                case "3": methodName = "Boleto"; break;
+                default: methodName = "Pagamento";
+            }
+            
+            // Simulação de processamento
+            showNotification(`Processando pagamento via ${methodName}...`);
+            
+            setTimeout(() => {
+                cart = [];
+                updateCartCount();
+                closeCart();
+                
+                // Gerar número de pedido
+                const orderNumber = Math.floor(Math.random() * 1000000);
+                
+                alert(`✅ COMPRA FINALIZADA COM SUCESSO!\n\n📦 Número do pedido: #${orderNumber}\n💰 Valor total: R$ ${total.toFixed(2)}\n📧 Enviamos os detalhes para: ${currentUser}\n\nObrigado por comprar na GameStore!`);
+                
+                showNotification("Compra realizada com sucesso! Obrigado!");
+            }, 2000);
+        }
+        
+        // ============================================
+        // FUNÇÕES DOS BOTÕES
+        // ============================================
+        
+        function scrollToGames() {
+            document.querySelector("#jogos").scrollIntoView({ behavior: "smooth" });
+        }
+        
+        function showDailyOffer() {
+            const offers = [
+                "Pacote GTA V + Red Dead 2 por R$ 199,90!",
+                "Assinatura Xbox Game Pass - 30% OFF",
+                "Promoção: Leve 2, pague 1 em jogos indie!",
+                "Cupom: GAMER10 - 10% OFF em toda loja!"
+            ];
+            
+            const randomOffer = offers[Math.floor(Math.random() * offers.length)];
+            alert(`🎁 OFERTA DO DIA 🎁\n\n${randomOffer}\n\nAproveite agora!`);
+        }
+        
+        function searchGames() {
+            const query = document.getElementById("searchInput").value.trim();
+            
+            if (!query) {
+                showNotification("Digite algo para buscar!");
+                return;
+            }
+            
+            showNotification(`Buscando por: "${query}"...`);
+            
+            // Simulação de busca
+            setTimeout(() => {
+                alert(`🔍 RESULTADOS DA BUSCA: "${query}"\n\nEncontramos 3 jogos relacionados:\n\n1. Cyberpunk 2077\n2. EA Sports FC 24\n3. Call of Duty: Modern Warfare\n\nClique em "Comprar" para adicionar ao carrinho!`);
+            }, 1000);
+        }
+        
+        function filterByCategory(category) {
+            showNotification(`Filtrando jogos da categoria: ${category}`);
+            
+            // Simulação de filtro
+            setTimeout(() => {
+                alert(`🎮 JOGOS DE ${category.toUpperCase()}:\n\n${getGamesByCategory(category)}\n\nClique em "Comprar" para adicionar ao carrinho!`);
+            }, 500);
+        }
+        
+        function getGamesByCategory(category) {
+            const games = {
+                "Ação": "• Cyberpunk 2077\n• God of War\n• Call of Duty",
+                "Aventura": "• The Legend of Zelda\n• Uncharted\n• Tomb Raider",
+                "RPG": "• Final Fantasy\n• The Witcher 3\n• Skyrim",
+                "Esportes": "• EA Sports FC 24\n• NBA 2K24\n• F1 2023",
+                "Estratégia": "• Age of Empires\n• Civilization VI\n• XCOM 2",
+                "Terror": "• Resident Evil 4\n• Silent Hill\n• Outlast"
+            };
+            
+            return games[category] || "• Nenhum jogo encontrado nesta categoria.";
+        }
+        
+        function showBirthdayOffers() {
+            alert("🎂 PROMOÇÃO DE ANIVERSÁRIO 🎂\n\n- 50% OFF em jogos selecionados\n- Cupom: FELIZANIVERSARIO\n- Válido por 7 dias\n\nAproveite as ofertas especiais!");
+        }
+        
+        function createBundle() {
+            alert("🎮 MONTAR PACOTE GAMER 🎮\n\nEscolha 3 jogos da lista:\n\n1. The Witcher 3\n2. Red Dead Redemption 2\n3. GTA V\n4. Cyberpunk 2077\n5. God of War\n\nPreço do pacote: R$ 299,90\n\nClique nos jogos que deseja!");
+        }
+        
+        function loadMoreGames() {
+            showNotification("Carregando mais jogos...");
+            
+            // Simulação de carregamento
+            setTimeout(() => {
+                alert("➕ MAIS JOGOS CARREGADOS!\n\n• Call of Duty: Modern Warfare III\n• Spider-Man 2\n• Starfield\n• Forza Motorsport\n\nRole para ver os novos jogos!");
+            }, 1500);
+        }
+        
+        // ============================================
+        // FUNÇÕES SOCIAIS
+        // ============================================
+        
+        function shareOnFacebook() {
+            showNotification("Compartilhando GameStore no Facebook...");
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href), "_blank");
+        }
+        
+        function shareOnTwitter() {
+            showNotification("Compartilhando GameStore no Twitter...");
+            window.open("https://twitter.com/intent/tweet?text=Conheça a GameStore - A melhor loja de jogos!&url=" + encodeURIComponent(window.location.href), "_blank");
+        }
+        
+        function shareOnInstagram() {
+            showNotification("Siga-nos no Instagram: @GameStoreOficial");
+        }
+        
+        function joinDiscord() {
+            showNotification("Junte-se ao nosso Discord! Link copiado para a área de transferência.");
+            
+            // Copiar link fictício
+            navigator.clipboard.writeText("https://discord.gg/gamestore").then(() => {
+                alert("🔗 LINK DO DISCORD COPIADO!\n\nCole no seu navegador para entrar na nossa comunidade!");
+            });
+        }
+        
+        // ============================================
+        // FUNÇÕES DE CONTATO/SUPORTE
+        // ============================================
+        
+        function callPhone() {
+            if (confirm("📞 LIGAR PARA A GAMESTORE?\n\n(11) 99999-9999\n\nDeseja realizar a ligação?")) {
+                showNotification("Iniciando chamada... (simulação)");
+            }
+        }
+        
+        function sendEmail() {
+            window.location.href = "mailto:contato@gamestore.com.br?subject=Contato GameStore&body=Olá, gostaria de mais informações sobre...";
+        }
+        
+        function openSupport() {
+            alert("🛟 SUPORTE GAMESTORE\n\n• Email: suporte@gamestore.com.br\n• WhatsApp: (11) 99999-9999\n• Horário: 24/7\n\nComo podemos ajudar?");
+        }
+        
+        function openTerms() {
+            alert("📜 TERMOS DE USO\n\n1. Todos os jogos são digitais\n2. Não aceitamos devoluções de jogos ativados\n3. Os preços podem mudar sem aviso prévio\n4. O estoque é limitado\n\nLeia os termos completos em nosso site.");
+        }
+        
+        function openPrivacy() {
+            alert("🔒 POLÍTICA DE PRIVACIDADE\n\n• Seus dados estão seguros conosco\n• Não compartilhamos informações com terceiros\n• Usamos criptografia SSL\n• Você pode excluir sua conta a qualquer momento");
+        }
+        
+        // ============================================
+        // FUNÇÕES GERAIS
+        // ============================================
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        
+        function showAllOffers() {
+            alert("🏷️ TODAS AS OFERTAS\n\n1. Jogos com até 70% OFF\n2. Pacotes especiais\n3. Cupons exclusivos\n4. Promoções relâmpago\n\nConfira todas na seção \"Ofertas\"!");
+        }
+        
+        function subscribeNewsletter() {
+            const email = document.getElementById("newsletterEmail").value;
+            
+            if (!email || !email.includes("@")) {
+                showNotification("Digite um email válido!");
+                return;
+            }
+            
+            showNotification(`Inscrito na newsletter com: ${email}`);
+            document.getElementById("newsletterEmail").value = "";
+            
+            setTimeout(() => {
+                alert("📧 INSCRIÇÃO CONFIRMADA!\n\nVocê receberá nossas ofertas exclusivas em breve!\n\nObrigado por se inscrever!");
+            }, 1000);
+        }
+        
+        // ============================================
+        // NOTIFICAÇÕES
+        // ============================================
+        
+        function showNotification(message) {
+            const notification = document.getElementById("notification");
+            notification.textContent = message;
+            notification.style.display = "block";
+            
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 3000);
+        }
+        
+        // ============================================
+        // CONTADOR DE OFERTAS
+        // ============================================
+        
+        function updateOfferTimer() {
+            const days = document.getElementById("days");
+            const hours = document.getElementById("hours");
+            const minutes = document.getElementById("minutes");
+            
+            let d = parseInt(days.textContent);
+            let h = parseInt(hours.textContent);
+            let m = parseInt(minutes.textContent);
+            
+            m--;
+            
+            if (m < 0) {
+                m = 59;
+                h--;
+                
+                if (h < 0) {
+                    h = 23;
+                    d--;
+                    
+                    if (d < 0) {
+                        d = 0;
+                        h = 0;
+                        m = 0;
+                    }
+                }
+            }
+            
+            days.textContent = d.toString().padStart(2, "0");
+            hours.textContent = h.toString().padStart(2, "0");
+            minutes.textContent = m.toString().padStart(2, "0");
+        }
+        
+        // ============================================
+        // INICIALIZAÇÃO
+        // ============================================
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log("🎮 GameStore - Sistema carregado!");
+            
+            // Fechar modais clicando fora
+            window.onclick = function(event) {
+                const modals = document.querySelectorAll(".modal");
+                modals.forEach(modal => {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                });
+            };
+            
+            // Iniciar contador
+            setInterval(updateOfferTimer, 60000);
+            
+            // Suavizar rolagem para links âncora
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute("href");
+                    if (targetId === "#") return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
